@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main Page</title>
+</head>
+<body>
+
+<p>Date/Time: <span id="datetime"></span></p>
+
+<br>
+
+<div class="container">
+
+</div>
+
+    <form method="post" action="/add">
+
+        <div class="form-group">
+            <h5>Please enter your information below:</h5>
+            <label for="fullName">Full Name:</label>
+            <input class="form-control" type="text" name="fullName" id="fullName" required>
+            <br>
+            <label for="productId">Product id:</label>
+            <input class="form-control" type="text" name="productId" id="productId">
+            <br>
+            <label for="bidAmount">Bid amount:</label>
+            <input class="form-control" type="text" name="bidAmount" id="bidAmount" required>
+            <br>
+            <br>
+            <input class="btn btn-primary mb-2" type="submit" value="Send">
+        </div>
+
+    </form>
+
+    <script type="text/javascript" src="renderPage.js"></script>
+
+</body>
+</html>
