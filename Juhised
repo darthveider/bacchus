@@ -1,0 +1,13 @@
+(IntelliJ juhend)
+1. Tee uus MySQL andmebaas ning uus schema nimega "bacchus".
+2. Ava src/main/resources/table_creation.sql ning kopeeri selle sisu.
+3. Tee hiirega parem click punktis 1 tehtud "bacchus" schema peal ning vali open console.
+4. Kleebi punktis 2 kopeeritud tekst konsooli, kliki üks kord teksti peale ning kliki konsooli üleval vasakus nurgas olevat rohelist(Execute) ikooni või vajuta Ctrl+Enter.
+5. Ava src/main/resources/application.properties ning asenda spring.datasource.password väärtus "parool" enda andmebaasi parooliga.
+6. Ava src/main/java/com/uptime/bacchus/BacchusApplication.java ning vajuta Run.
+7. Ava brauseris localhost:8080
+
+(MySQL Workbench juhend)
+1.
+
+

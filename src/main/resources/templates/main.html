@@ -3,37 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <title>Main Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </head>
 <body>
 
-<p>Date/Time: <span id="datetime"></span></p>
+<h1>BACCHUS</h1>
+<div><h2 id="currentTime"></h2></div>
 
 <br>
 
-<div class="container">
-
-</div>
-
-    <form method="post" action="/add">
-
-        <div class="form-group">
-            <h5>Please enter your information below:</h5>
-            <label for="fullName">Full Name:</label>
-            <input class="form-control" type="text" name="fullName" id="fullName" required>
-            <br>
-            <label for="productId">Product id:</label>
-            <input class="form-control" type="text" name="productId" id="productId">
-            <br>
-            <label for="bidAmount">Bid amount:</label>
-            <input class="form-control" type="text" name="bidAmount" id="bidAmount" required>
-            <br>
-            <br>
-            <input class="btn btn-primary mb-2" type="submit" value="Send">
+<div class="container" id="categoryContainer">
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            choose category
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         </div>
+    </div>
+</div>
+<br>
 
-    </form>
+<div class="container" id="productsContainer"></div>
+<br>
 
-    <script type="text/javascript" src="renderPage.js"></script>
+<div class="container" id="alertContainer"></div>
+
+<script type="text/javascript" src="renderPage.js"></script>
 
 </body>
 </html>

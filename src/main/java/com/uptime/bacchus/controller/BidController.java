@@ -5,9 +5,7 @@ import com.uptime.bacchus.repository.BidRepository;
 import com.uptime.bacchus.service.BidService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -26,10 +24,11 @@ public class BidController {
         return "main";
     }
 
-    @PostMapping("/add")
-    public String insertBid(Bid bid) {
+    @ResponseBody
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public void insertBid(@RequestBody Bid bid) {
         bidService.addBid(new Bid(bid.getFullName(), bid.getProductId(), bid.getBidAmount()));
-        return "redirect:bidAdded";
+//        return "redirect:bidAdded";
     }
 
     @GetMapping("/get")
@@ -44,9 +43,9 @@ public class BidController {
         return bidService.getBidsByProductId(productId);
     }
 
-    @GetMapping("/bidAdded")
-    public String getBidAddedPage() {
-        return "added";
-    }
+//    @GetMapping("/bidAdded")
+//    public String getBidAddedPage() {
+//        return "added";
+//    }
 
 }

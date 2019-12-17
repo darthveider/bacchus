@@ -1,0 +1,52 @@
+.alert-secondary{
+    max-width: 100%;
+    width: auto !important;
+    display: inline-block;
+    margin: 0 0 0 10px;
+    padding: 6px 60px 6px 20px;
+}
+
+.alert-success{
+    max-width: 100%;
+    width: auto !important;
+    display: inline-block;
+}
+
+.alert-danger{
+    max-width: 100%;
+    width: auto !important;
+    display: inline-block;
+}
+
+#productsContainer {
+    margin-top: 20px;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+th {
+    text-align: center;
+}
+
+
+.close {
+    padding: 6px 6px 6px 6px !important;
+}
+
+.dropdown{
+    float: left;
+}
+
+table {
+    width: 100%;
+}
+
+h1, h2 {
+    text-align: center;
+}
