@@ -1,0 +1,26 @@
+(IntelliJ)
+1. Tee uus MySQL andmebaas ning uus schema nimega "bacchus".
+2. Ava src/main/resources/table_creation.sql ning kopeeri selle sisu.
+3. Tee hiirega parem click punktis 1 tehtud "bacchus" schema peal ning vali open console.
+4. Kleebi punktis 2 kopeeritud tekst konsooli, kliki üks kord teksti peale ning kliki konsooli üleval vasakus nurgas olevat rohelist(Execute) ikooni või vajuta Ctrl+Enter.
+5. Ava src/main/resources/application.properties ning asenda spring.datasource.password väärtus "parool" enda andmebaasi parooliga.
+6. Ava src/main/java/com/uptime/bacchus/BacchusApplication.java ning vajuta Run.
+7. Ava brauseris localhost:8080
+
+(MySQL Workbench, Maven)
+1. Ava MySQL Workbench ning tee uus ühendus järgmiste parameetritega: Hostname:localhost, Port:3306, Username:root
+2. Ava bacchus\src\main\resources\table_creation.sql ning kopeeri selle sisu.
+3. Ava MySQL Workbench-is uus SQL aken kuhu päringuid kirjutada ning kirjuta sinna:
+    create database bacchus;
+    use bacchus;
+4. Lisaks kleebi punkis 2 kopeeritud sisu sinna juurde ning vajuta Execute.
+5. Ava bacchus\src\main\resources\application.properties ning asenda spring.datasource.password väärtus "parool" enda andmebaasi parooliga.
+6. Ava Command Prompt ning navigeeri seal bacchus kausta.
+7. Kui sul ei ole Maven installitud siis siin on juhend: https://www.mkyong.com/maven/how-to-install-maven-in-windows/
+8. Olles bacchus kaustas kirjuta Command Prompti: mvn install
+9. Kui see on tehtud, kirjuta Command Prompti: mvn spring-boot:run
+10. Ava brauseris localhost:8080
+
+
+
+
