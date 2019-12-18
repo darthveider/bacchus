@@ -19,28 +19,24 @@
 }
 
 #productsContainer {
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
-table {
-    border-collapse: collapse;
+#alertContainer {
+    margin-top: 10px;
 }
 
 table, th, td {
-    border: 1px solid black;
-}
-
-th {
     text-align: center;
 }
 
-
 .close {
     padding: 6px 6px 6px 6px !important;
+    display: inline-block;
 }
 
 .dropdown{
-    float: left;
+    display: inline-block;
 }
 
 table {

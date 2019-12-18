@@ -2,7 +2,6 @@ let products;
 let categories = [];
 let chosenCategory;
 
-// var buildEvent = new Event('build');
 
 function createElem(tag, className) {
     let elem = document.createElement(tag);
@@ -19,6 +18,7 @@ request('GET', 'https://cors-anywhere.herokuapp.com/http://uptime-auction-api.az
     console.log(reason);
 });
 
+
 function request(method, url) {
     return new Promise(function (resolve, reject) {
         let xhr = new XMLHttpRequest();
@@ -29,10 +29,12 @@ function request(method, url) {
     })
 }
 
+
 function loadAllProducts() {
     categories.splice(0);
     let categoryContainer = document.querySelector(".dropdown-menu");
     let productContainer = document.querySelector("#productsContainer");
+    let alertContainer = document.getElementById("alertContainer");
 
     while (productContainer.hasChildNodes()) {
         productContainer.removeChild(productContainer.firstChild);
@@ -43,9 +45,7 @@ function loadAllProducts() {
         }
     }
 
-
     let table = document.createElement("table");
-    // table.addEventListener('build', function (e) { loadAllProducts() }, false);
     let table_row = document.createElement("tr");
 
     let table_head_name = document.createElement("th");
@@ -53,8 +53,8 @@ function loadAllProducts() {
     let table_head_date = document.createElement("th");
     let table_head_input = document.createElement("th");
 
-    table_head_name.innerText = "Product Name";
-    table_head_description.innerText = "Product Description";
+    table_head_name.innerText = "Product name";
+    table_head_description.innerText = "Product description";
     table_head_date.innerText = "Bidding ends";
     table_head_input.innerText = "Make a bid";
 
@@ -75,12 +75,12 @@ function loadAllProducts() {
             createCategory(products[i].productCategory);
         }
     }
-    console.log(categories);
-    if (chosenCategory) {
-        if (!categories.includes(chosenCategory)) {
-            // removeElementByClass("alert alert-success alert-dismissible fade show");
+
+    if (document.getElementById("chosenCategory")) {
+        if (!categories.includes(document.getElementById("chosenCategory").innerText)) {
+            console.log("There is no " + document.getElementById("chosenCategory").innerText + " in categories");
+            removeElementById("alertId");
             chosenCategory = "";
-            loadAllProducts();
         }
     }
 
@@ -91,6 +91,7 @@ function loadAllProducts() {
             let table_data_description = document.createElement("td");
             let table_data_date = document.createElement("td");
             let table_data_input = document.createElement("td");
+            table_data_input.setAttribute("nowrap", "nowrap");
 
             table_data_name.innerText = products[i].productName;
             table_data_description.innerText = products[i].productDescription;
@@ -132,6 +133,7 @@ function chooseCategory(id) {
 
     let container = createElem("div", "alert alert-secondary alert-dismissible fade show");
     container.setAttribute("role", "alert");
+    container.setAttribute("id", "alertId");
     let categoryName = document.createElement("span");
     categoryName.setAttribute("id", "chosenCategory");
     categoryName.innerText = chosenCategory;
@@ -155,16 +157,16 @@ function chooseCategory(id) {
 
 
 function resetCategory() {
-    console.log("doing reset");
     chosenCategory = "";
     loadAllProducts();
 }
 
 
-function removeElementByClass(className) {
-    let elem = document.querySelector(className);
-    return elem.parentNode.removeChild(elem);
+function removeElementById(id) {
+    let elem = document.getElementById(id);
+    elem.parentNode.removeChild(elem);
 }
+
 
 function get_formatted_date_time_yyyy_mm_dd_hh_mm_ss(dateTime) {
     let date = dateTime.toString().split("T")[0].split("-");
@@ -175,15 +177,23 @@ function get_formatted_date_time_yyyy_mm_dd_hh_mm_ss(dateTime) {
     });
 }
 
+
 function get_formatted_date_from_list(dates) {
     let strDates = [];
 
-    let date = new Date();
-    if (dates[3] >= 22) {
-        dates[3] = (dates[3] + Math.abs(date.getTimezoneOffset() / 60)) - 24;
+    let timezone_difference = new Date().getTimezoneOffset() / 60;
+
+    if (timezone_difference < 0) {
+        dates[3] += Math.abs(timezone_difference);
+        if (dates[3] > 23) {
+            dates[3] -= 24;
+        }
     }
-    else {
-        dates[3] += Math.abs(date.getTimezoneOffset() / 60);
+    else if (timezone_difference > 0) {
+        dates[3] += timezone_difference;
+        if (dates[3] < 0) {
+            dates[3] += 24;
+        }
     }
 
     for (let el of dates) {
@@ -195,9 +205,9 @@ function get_formatted_date_from_list(dates) {
         }
     }
 
-
     return `${strDates[0]}-${strDates[1]}-${strDates[2]} / ${strDates[3]}:${strDates[4]}:${strDates[5]}`
 }
+
 
 function checkDate(product) {
     let pdList = get_formatted_date_time_yyyy_mm_dd_hh_mm_ss(product.biddingEndDate);
@@ -227,7 +237,7 @@ function showResponseMessage(responseValue) {
     }
     else {
         responseMessage.setAttribute("class", "alert alert-danger");
-        responseMessage.innerText = "Could not make a bid with given information"
+        responseMessage.innerText = "You have to provide full name and bid amount to make a bid"
     }
     document.getElementById("alertContainer").appendChild(responseMessage);
     setTimeout(function() {document.getElementById('alertContainer').innerHTML='';},3000);
@@ -298,6 +308,8 @@ function create_table_input(productId, formId) {
                     "Content-type": "application/json"
                 }
             };
+
+            console.log(options);
             fetch("http://localhost:8080/add", options).then(function (response) {
                 loadAllProducts(products);
                 showResponseMessage(response.ok);
